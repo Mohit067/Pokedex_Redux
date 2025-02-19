@@ -1,9 +1,12 @@
+import { Link } from 'react-router-dom'
 import './Pokemon.css'
-export const Pokemon = ({name, image}) => {
+export const Pokemon = ({name, image, id}) => {
     return(
-        <div className='pokemon'>
-            <div><img src={image}/></div>
-            <div>{name}</div>
-        </div>
+        <Link to={`/pokemon/${id}`} className='pokemon'>
+            <div >   
+                        <div><img src={image}/></div>
+                        <div>{name}</div>
+            </div>
+        </Link>
     )
 }
