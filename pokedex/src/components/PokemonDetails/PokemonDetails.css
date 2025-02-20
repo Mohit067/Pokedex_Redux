@@ -49,3 +49,30 @@
     font-weight: bold;
     text-transform: capitalize;
 }
+.similar-pokemon {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa; /* Light gray background */
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.similar-pokemon ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.similar-pokemon li {
+    padding: 5px 10px;
+    background: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 5px;
+    transition: background 0.3s ease;
+}
+
+.similar-pokemon li:hover {
+    background: #e3e3e3;
+    cursor: pointer;
+}

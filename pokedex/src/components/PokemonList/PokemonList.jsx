@@ -1,62 +1,11 @@
-import axios from "axios";
-import { useEffect, useState } from "react"
 import './PokemonList.css'
 import { Pokemon } from "../Pokemon/Pokemon";
+import { usePokemonList } from "../hooks/usePokemonList1";
 
 export const PokemonList = () => {
 
-    // const [pokemonList, setPokemonList] = useState([]);
-    // const [isLoading, setIsLoading] = useState(true);
+    const [pokemonListState, setPokemonListState] = usePokemonList(false);
 
-    // const [pokedexUrl, setPokedexUrl]= useState('http://pokeapi.co/api/v2/pokemon');
-
-    // const [prevUrl, setPrevUrl] = useState('');
-    // const [nextUrl, setNextUrl] = useState('');
-
-    const [pokemonListState, setPokemonListState] = useState({
-        pokemonList: [],
-        isLoading: true,
-        pokedexUrl: 'http://pokeapi.co/api/v2/pokemon',
-        prevUrl: '',
-        nextUrl: ''
-    })
-
-    async function downloadPokemons() {
-        setPokemonListState((state) => ({...state, isLoading: true}));
-        const response = await axios.get(pokemonListState.pokedexUrl);
-        const pokemonResults = response.data.results;
-        setPokemonListState((state) => ({
-            ...state, 
-            prevUrl: response.data.previous, 
-            nextUrl: response.data.next
-        }));
-
-        const pokemonResultsPromise = pokemonResults.map((pokemon) => axios.get(pokemon.url));
-        const pokemonData = await axios.all(pokemonResultsPromise);
-        console.log(pokemonData);
-
-        const pokeListResult = pokemonData.map((pokeDate) => {
-            const pokemon = pokeDate.data;
-            return{
-                id: pokemon.id,
-                name: pokemon.name,
-                image: pokemon.sprites.other.dream_world.front_default,
-                types: pokemon.types,
-            }
-        })
-        console.log(pokeListResult);
-
-        setPokemonListState((state) => ({
-            ...state, 
-            pokemonList: pokeListResult, 
-            isLoading: false
-        }));
-
-    }
-
-    useEffect(() => {
-        downloadPokemons();
-    }, [pokemonListState.pokedexUrl])
     return(
         <div className="pokemon-list-wrapper">
             <div>Pokemon List</div>
